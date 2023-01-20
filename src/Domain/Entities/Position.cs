@@ -7,14 +7,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Role:BaseEntity
+    public class Position:BaseEntity
     {
-        /// <summary>
-        /// Kullanıcı rollerini ifade eder
-        /// </summary>
-        public int RoleId { get; set; }
+        public int PositionId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-
     }
 }

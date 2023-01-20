@@ -4,6 +4,9 @@ namespace Domain.Entities
 {
     public class User:BaseEntity
     {
+        /// <summary>
+        /// Kullanıcı için gerekli bilgileri tutar
+        /// </summary>
         public int UserId { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }

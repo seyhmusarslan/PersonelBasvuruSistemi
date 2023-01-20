@@ -13,5 +13,6 @@ namespace Domain.Entities
         public int RecruitmentId { get; set; }
         public Recruitment Recruitment { get; set; }
         public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

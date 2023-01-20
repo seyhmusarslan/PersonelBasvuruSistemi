@@ -12,9 +12,9 @@ namespace Domain.Entities
         public int RecruitmentId { get; set; }
         public Recruitment Recruitment { get; set; }
         public int RecruitmentDetailId { get; set; }
-        public RecruitmentDetail RecruitmentDetail { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public RecruitmentDetailCondition RecruitmentDetail { get; set; }
+        //public string Title { get; set; }//Zaten RecruitmentDetail kısmında açıklama ve 
+        //public string Description { get; set; }
         public string FileUrl { get; set; }
         
     }

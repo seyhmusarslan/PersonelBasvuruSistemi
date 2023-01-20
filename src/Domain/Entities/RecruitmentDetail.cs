@@ -1,12 +1,11 @@
 ﻿using Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
+    /// <summary>
+    /// İşe alım süreçlerindeki ilanın alt bölümlerini tutar
+    /// Örneğin; Bilgisayar Mühendisi Alım .... 1 Adet ... Şu şartlarda olmalı vs.
+    /// </summary>
     public class RecruitmentDetail:BaseEntity
     {
         public int RecruitmentDetailId { get; set; }
@@ -15,6 +14,9 @@ namespace Domain.Entities
         public string Unit { get; set; }
         public string Division { get; set; }
         public string Program { get; set; }
+        public int PositionId { get; set; }
+        public Position Position { get; set; }
         public int Count { get; set; }
+        public List<RecruitmentDetailCondition> RecruitmentDetailConditions { get; set; }
     }
 }
