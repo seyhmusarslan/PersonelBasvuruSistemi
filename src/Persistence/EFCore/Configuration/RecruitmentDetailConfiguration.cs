@@ -1,13 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistence.EFCore.Configuration
 {
-    public class RecruitmentDetailConfiguration : IEntityTypeConfiguration<RecruitmentDetailConfiguration>
+    public class RecruitmentDetailConfiguration : IEntityTypeConfiguration<RecruitmentDetail>
     {
-        public void Configure(EntityTypeBuilder<RecruitmentDetailConfiguration> builder)
+        public void Configure(EntityTypeBuilder<RecruitmentDetail> builder)
         {
-            throw new NotImplementedException();
+            builder.Property(p=>p.Unit).IsRequired();
+            builder.Property(p=>p.RecruitmentId).IsRequired();
+            builder.Property(p=>p.Count).IsRequired();
+            builder.Property(p=>p.PositionId).IsRequired();
         }
     }
 }

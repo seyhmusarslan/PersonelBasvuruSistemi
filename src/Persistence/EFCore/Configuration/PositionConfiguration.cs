@@ -8,7 +8,7 @@ namespace Persistence.EFCore.Configuration
     {
         public void Configure(EntityTypeBuilder<Position> builder)
         {
-            throw new NotImplementedException();
+            builder.Property(p => p.Name).IsRequired();
         }
     }
 }

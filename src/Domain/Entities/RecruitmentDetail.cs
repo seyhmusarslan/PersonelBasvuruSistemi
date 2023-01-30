@@ -18,5 +18,6 @@ namespace Domain.Entities
         public Position Position { get; set; }
         public int Count { get; set; }
         public List<RecruitmentDetailCondition> RecruitmentDetailConditions { get; set; }
+        public List<RecruitmentDetailDocument> RecruitmentDetailDocuments { get; set; }
     }
 }

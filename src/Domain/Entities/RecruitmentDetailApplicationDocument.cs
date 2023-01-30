@@ -2,9 +2,9 @@
 
 namespace Domain.Entities
 {
-    public class ApplicationFile:BaseEntity
+    public class RecruitmentDetailApplicationDocument:BaseEntity
     {
-        public int ApplicationFileId { get; set; }
+        public int RecruitmentDetailApplicationDocumentId { get; set; }
         public int ApplicationId { get; set; }
         public Application Application { get; set; }
         public int UserId { get; set; }
@@ -12,10 +12,10 @@ namespace Domain.Entities
         public int RecruitmentId { get; set; }
         public Recruitment Recruitment { get; set; }
         public int RecruitmentDetailId { get; set; }
-        public RecruitmentDetailCondition RecruitmentDetail { get; set; }
-        //public string Title { get; set; }//Zaten RecruitmentDetail kısmında açıklama ve 
-        //public string Description { get; set; }
-        public string FileUrl { get; set; }
-        
+        public RecruitmentDetail RecruitmentDetail { get; set; }
+        public string DocumentUrl { get; set; }
+        public int DocumentId { get; set; }
+        public Document Document { get; set; }
+
     }
 }

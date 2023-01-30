@@ -8,7 +8,8 @@ namespace Persistence.EFCore.Configuration
     {
         public void Configure(EntityTypeBuilder<RecruitmentDetailCondition> builder)
         {
-            throw new NotImplementedException();
+            builder.Property(p => p.RecruitmentDetailId).IsRequired();
+            builder.Property(p => p.ConditionId).IsRequired();
         }
     }
 }

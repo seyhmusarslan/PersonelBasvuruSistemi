@@ -1,12 +1,13 @@
 ﻿using Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
+    /// <summary>
+    /// Position sınıfı RecruitmentDetails(işe alım detay)
+    /// tablosundaki bu işin hangi pozistona ait olduğunu tutmaya
+    /// yarar.Örneğin Mühendis,Ebe,Hemşire vs gibi.
+    /// Bir nevi hangi kadroya alınacağını belirliyoruz.
+    /// </summary>
     public class Position:BaseEntity
     {
         public int PositionId { get; set; }

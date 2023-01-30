@@ -17,6 +17,6 @@ namespace Domain.Entities
         public bool Gender { get; set; }
         public string Address { get; set; }
         public int RoleId { get; set; }
-        public Role Role { get; set; }
+        public List<UserRole> UserRoles { get; set; }
     }
 }
