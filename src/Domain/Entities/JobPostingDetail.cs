@@ -1,9 +1,15 @@
 using System;
+using Domain.Common;
 
 namespace Domain.Entities
 {
-    public class JobPostingDetail
+    public class JobPostingDetail:BaseEntity
     {
-        
+        public int JobPostingDetailId { get; set; }
+        public string WorkedDestination { get; set; }
+        public int Count { get; set; }
+        public string Description { get; set; }
+        public int PositonId { get; set; }
+        public Position Position { get; set; }
     }
 }

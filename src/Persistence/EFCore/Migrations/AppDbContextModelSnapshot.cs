@@ -8,7 +8,7 @@ using Persistence.EFCore.Context;
 
 #nullable disable
 
-namespace Persistence.EFCore.Migrations
+namespace Persistence.EFCoreMigrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
@@ -22,76 +22,162 @@ namespace Persistence.EFCore.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Entities.Application", b =>
+            modelBuilder.Entity("Domain.Entities.DocumentGroup", b =>
                 {
-                    b.Property<int>("ApplicationId")
+                    b.Property<int>("DocumentGroupId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ApplicationId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DocumentGroupId"));
 
-                    b.Property<int>("RecruitmentDetailId")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RecruitmentId")
-                        .HasColumnType("int");
+                    b.HasKey("DocumentGroupId");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ApplicationId");
-
-                    b.HasIndex("RecruitmentDetailId");
-
-                    b.HasIndex("RecruitmentId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Applications");
+                    b.ToTable("DocumentGroups");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Condition", b =>
+            modelBuilder.Entity("Domain.Entities.Exam", b =>
                 {
-                    b.Property<int>("ConditionId")
+                    b.Property<int>("ExamId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ConditionId"));
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExamId"));
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ConditionId");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Conditions");
+                    b.HasKey("ExamId");
+
+                    b.ToTable("Exams");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Document", b =>
+            modelBuilder.Entity("Domain.Entities.JobPosting", b =>
                 {
-                    b.Property<int>("DocumentId")
+                    b.Property<int>("JobPostingId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DocumentId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("JobPostingId"));
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("JobTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("JobPostingId");
+
+                    b.HasIndex("JobTypeId");
+
+                    b.ToTable("JobPostings");
+                });
+
+            modelBuilder.Entity("Domain.Entities.JobPostingDetail", b =>
+                {
+                    b.Property<int>("JobPostingDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("JobPostingDetailId"));
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("JobPostingId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PositionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PositonId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WorkedDestination")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("JobPostingDetailId");
+
+                    b.HasIndex("JobPostingId");
+
+                    b.HasIndex("PositionId");
+
+                    b.ToTable("JobPostingDetails");
+                });
+
+            modelBuilder.Entity("Domain.Entities.JobType", b =>
+                {
+                    b.Property<int>("JobTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("JobTypeId"));
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DocumentName")
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FormName")
+                    b.HasKey("JobTypeId");
+
+                    b.ToTable("JobTypes");
+                });
+
+            modelBuilder.Entity("Domain.Entities.JobTypeDocument", b =>
+                {
+                    b.Property<int>("JobTypeDocumentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("JobTypeDocumentId"));
+
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsRequiredForAllPositions")
+                    b.Property<int>("DocumentGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsRequired")
                         .HasColumnType("bit");
 
-                    b.HasKey("DocumentId");
+                    b.Property<int>("JobTypeId")
+                        .HasColumnType("int");
 
-                    b.ToTable("DocumentUsers");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("JobTypeDocumentId");
+
+                    b.HasIndex("DocumentGroupId");
+
+                    b.HasIndex("JobTypeId");
+
+                    b.ToTable("JobTypeDocuments");
                 });
 
             modelBuilder.Entity("Domain.Entities.Position", b =>
@@ -101,6 +187,9 @@ namespace Persistence.EFCore.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PositionId"));
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -114,461 +203,156 @@ namespace Persistence.EFCore.Migrations
                     b.ToTable("Positions");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Recruitment", b =>
+            modelBuilder.Entity("Domain.Entities.PositionExam", b =>
                 {
-                    b.Property<int>("RecruitmentId")
+                    b.Property<int>("PositionExamId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RecruitmentId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PositionExamId"));
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("RecruitmentTypeId")
+                    b.Property<int>("ExamId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
+                    b.Property<double>("MinResult")
+                        .HasColumnType("float");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Multiplier")
+                        .HasColumnType("float");
 
-                    b.HasKey("RecruitmentId");
+                    b.Property<int>("PositionId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("RecruitmentTypeId");
+                    b.HasKey("PositionExamId");
 
-                    b.ToTable("Recruitments");
+                    b.HasIndex("ExamId");
+
+                    b.HasIndex("PositionId");
+
+                    b.ToTable("PositionExams");
                 });
 
-            modelBuilder.Entity("Domain.Entities.RecruitmentDetail", b =>
+            modelBuilder.Entity("Domain.Entities.PositionSpecificDocument", b =>
                 {
-                    b.Property<int>("RecruitmentDetailId")
+                    b.Property<int>("PositionSpecificDocumentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RecruitmentDetailId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PositionSpecificDocumentId"));
 
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Division")
+                    b.Property<bool>("IsRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PositionId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Program")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RecruitmentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Unit")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RecruitmentDetailId");
+                    b.HasKey("PositionSpecificDocumentId");
 
                     b.HasIndex("PositionId");
 
-                    b.HasIndex("RecruitmentId");
-
-                    b.ToTable("RecruitmentDetails");
+                    b.ToTable("PositionSpecificDocuments");
                 });
 
-            modelBuilder.Entity("Domain.Entities.RecruitmentDetailApplicationDocument", b =>
+            modelBuilder.Entity("Domain.Entities.JobPosting", b =>
                 {
-                    b.Property<int>("RecruitmentDetailApplicationDocumentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RecruitmentDetailApplicationDocumentId"));
-
-                    b.Property<int>("ApplicationId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DocumentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DocumentUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RecruitmentDetailId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RecruitmentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RecruitmentDetailApplicationDocumentId");
-
-                    b.HasIndex("ApplicationId");
-
-                    b.HasIndex("DocumentId");
-
-                    b.HasIndex("RecruitmentDetailId");
-
-                    b.HasIndex("RecruitmentId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("RecruitmentDetailApplicationDocuments");
-                });
-
-            modelBuilder.Entity("Domain.Entities.RecruitmentDetailCondition", b =>
-                {
-                    b.Property<int>("RecruitmentDetailConditionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RecruitmentDetailConditionId"));
-
-                    b.Property<int>("ConditionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RecruitmentDetailId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RecruitmentDetailConditionId");
-
-                    b.HasIndex("ConditionId");
-
-                    b.HasIndex("RecruitmentDetailId");
-
-                    b.ToTable("RecruitmentDetailConditions");
-                });
-
-            modelBuilder.Entity("Domain.Entities.RecruitmentDetailDocument", b =>
-                {
-                    b.Property<int>("RecruitmentDetailDocumentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RecruitmentDetailDocumentId"));
-
-                    b.Property<int>("DocumentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RecruitmentDetailId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RecruitmentDetailDocumentId");
-
-                    b.HasIndex("DocumentId");
-
-                    b.HasIndex("RecruitmentDetailId");
-
-                    b.ToTable("RecruitmentDetailDocuments");
-                });
-
-            modelBuilder.Entity("Domain.Entities.RecruitmentType", b =>
-                {
-                    b.Property<int>("RecruitmentTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RecruitmentTypeId"));
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RecruitmentTypeId");
-
-                    b.ToTable("RecruitmentTypes");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Role", b =>
-                {
-                    b.Property<int>("RoleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RoleId");
-
-                    b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("Domain.Entities.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Firstname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Gender")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("IdentityNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Lastname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Domain.Entities.UserRole", b =>
-                {
-                    b.Property<int>("UserRoleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserRoleId"));
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserRoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserRoles");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Application", b =>
-                {
-                    b.HasOne("Domain.Entities.RecruitmentDetail", "RecruitmentDetail")
+                    b.HasOne("Domain.Entities.JobType", "JobType")
                         .WithMany()
-                        .HasForeignKey("RecruitmentDetailId")
+                        .HasForeignKey("JobTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Recruitment", "Recruitment")
-                        .WithMany()
-                        .HasForeignKey("RecruitmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Recruitment");
-
-                    b.Navigation("RecruitmentDetail");
-
-                    b.Navigation("User");
+                    b.Navigation("JobType");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Recruitment", b =>
+            modelBuilder.Entity("Domain.Entities.JobPostingDetail", b =>
                 {
-                    b.HasOne("Domain.Entities.RecruitmentType", "RecruitmentType")
-                        .WithMany()
-                        .HasForeignKey("RecruitmentTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Domain.Entities.JobPosting", null)
+                        .WithMany("JobPostingDetails")
+                        .HasForeignKey("JobPostingId");
 
-                    b.Navigation("RecruitmentType");
-                });
-
-            modelBuilder.Entity("Domain.Entities.RecruitmentDetail", b =>
-                {
                     b.HasOne("Domain.Entities.Position", "Position")
                         .WithMany()
+                        .HasForeignKey("PositionId");
+
+                    b.Navigation("Position");
+                });
+
+            modelBuilder.Entity("Domain.Entities.JobTypeDocument", b =>
+                {
+                    b.HasOne("Domain.Entities.DocumentGroup", "DocumentGroup")
+                        .WithMany()
+                        .HasForeignKey("DocumentGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.JobType", "JobType")
+                        .WithMany("RequiredDocuments")
+                        .HasForeignKey("JobTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DocumentGroup");
+
+                    b.Navigation("JobType");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PositionExam", b =>
+                {
+                    b.HasOne("Domain.Entities.Exam", "Exam")
+                        .WithMany("PositionExams")
+                        .HasForeignKey("ExamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Position", "Position")
+                        .WithMany("PositionExams")
                         .HasForeignKey("PositionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Recruitment", "Recuruitment")
-                        .WithMany("RecruitmentDetails")
-                        .HasForeignKey("RecruitmentId")
+                    b.Navigation("Exam");
+
+                    b.Navigation("Position");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PositionSpecificDocument", b =>
+                {
+                    b.HasOne("Domain.Entities.Position", "Position")
+                        .WithMany("PositionSpecificDocuments")
+                        .HasForeignKey("PositionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Position");
-
-                    b.Navigation("Recuruitment");
                 });
 
-            modelBuilder.Entity("Domain.Entities.RecruitmentDetailApplicationDocument", b =>
+            modelBuilder.Entity("Domain.Entities.Exam", b =>
                 {
-                    b.HasOne("Domain.Entities.Application", "Application")
-                        .WithMany()
-                        .HasForeignKey("ApplicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Document", "Document")
-                        .WithMany()
-                        .HasForeignKey("DocumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.RecruitmentDetail", "RecruitmentDetail")
-                        .WithMany()
-                        .HasForeignKey("RecruitmentDetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Recruitment", "Recruitment")
-                        .WithMany()
-                        .HasForeignKey("RecruitmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Application");
-
-                    b.Navigation("Document");
-
-                    b.Navigation("Recruitment");
-
-                    b.Navigation("RecruitmentDetail");
-
-                    b.Navigation("User");
+                    b.Navigation("PositionExams");
                 });
 
-            modelBuilder.Entity("Domain.Entities.RecruitmentDetailCondition", b =>
+            modelBuilder.Entity("Domain.Entities.JobPosting", b =>
                 {
-                    b.HasOne("Domain.Entities.Condition", "Condition")
-                        .WithMany("RecruitmentDetailConditions")
-                        .HasForeignKey("ConditionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.RecruitmentDetail", "RecruitmentDetail")
-                        .WithMany("RecruitmentDetailConditions")
-                        .HasForeignKey("RecruitmentDetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Condition");
-
-                    b.Navigation("RecruitmentDetail");
+                    b.Navigation("JobPostingDetails");
                 });
 
-            modelBuilder.Entity("Domain.Entities.RecruitmentDetailDocument", b =>
+            modelBuilder.Entity("Domain.Entities.JobType", b =>
                 {
-                    b.HasOne("Domain.Entities.Document", "Document")
-                        .WithMany("RecruitmentDetailDocuments")
-                        .HasForeignKey("DocumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.RecruitmentDetail", "RecruitmentDetail")
-                        .WithMany("RecruitmentDetailDocuments")
-                        .HasForeignKey("RecruitmentDetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Document");
-
-                    b.Navigation("RecruitmentDetail");
+                    b.Navigation("RequiredDocuments");
                 });
 
-            modelBuilder.Entity("Domain.Entities.UserRole", b =>
+            modelBuilder.Entity("Domain.Entities.Position", b =>
                 {
-                    b.HasOne("Domain.Entities.Role", "Role")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("PositionExams");
 
-                    b.HasOne("Domain.Entities.User", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Condition", b =>
-                {
-                    b.Navigation("RecruitmentDetailConditions");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Document", b =>
-                {
-                    b.Navigation("RecruitmentDetailDocuments");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Recruitment", b =>
-                {
-                    b.Navigation("RecruitmentDetails");
-                });
-
-            modelBuilder.Entity("Domain.Entities.RecruitmentDetail", b =>
-                {
-                    b.Navigation("RecruitmentDetailConditions");
-
-                    b.Navigation("RecruitmentDetailDocuments");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Role", b =>
-                {
-                    b.Navigation("UserRoles");
-                });
-
-            modelBuilder.Entity("Domain.Entities.User", b =>
-                {
-                    b.Navigation("UserRoles");
+                    b.Navigation("PositionSpecificDocuments");
                 });
 #pragma warning restore 612, 618
         }

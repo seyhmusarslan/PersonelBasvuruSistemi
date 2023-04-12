@@ -1,17 +1,16 @@
-﻿using Domain.Common;
+using System;
+using Domain.Common;
 
 namespace Domain.Entities
 {
-    /// <summary>
-    /// Position sınıfı RecruitmentDetails(işe alım detay)
-    /// tablosundaki bu işin hangi pozistona ait olduğunu tutmaya
-    /// yarar.Örneğin Mühendis,Ebe,Hemşire vs gibi.
-    /// Bir nevi hangi kadroya alınacağını belirliyoruz.
-    /// </summary>
+    //İlan detayındaki açılan pozisyonlar.Mühendis,ebe,
     public class Position:BaseEntity
     {
         public int PositionId { get; set; }
         public string Name { get; set; }
+        public string Code { get; set; }
         public string Description { get; set; }
+        public ICollection<PositionExam> PositionExams { get; set; }
+        public ICollection<PositionSpecificDocument> PositionSpecificDocuments { get; set; }
     }
 }
