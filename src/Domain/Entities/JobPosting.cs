@@ -3,7 +3,7 @@ using Domain.Common;
 
 namespace Domain.Entities
 {
-    public class JobPosting:BaseEntity
+    public class JobPosting:AuditEntity
     {
         public int JobPostingId { get; set; }
         public string Title { get; set; }

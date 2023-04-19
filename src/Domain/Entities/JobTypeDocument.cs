@@ -3,7 +3,7 @@ using Domain.Common;
 
 namespace Domain.Entities
 {
-    public class JobTypeDocument:BaseEntity
+    public class JobTypeDocument:AuditEntity
     {
         public int JobTypeDocumentId { get; set; }
         public string Name { get; set; }

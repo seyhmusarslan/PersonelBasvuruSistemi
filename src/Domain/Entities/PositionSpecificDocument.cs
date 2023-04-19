@@ -3,7 +3,7 @@ using Domain.Common;
 
 namespace Domain.Entities
 {
-    public class PositionSpecificDocument: BaseEntity
+    public class PositionSpecificDocument: AuditEntity
     {
         public int PositionSpecificDocumentId { get; set; }
         public string Name { get; set; }

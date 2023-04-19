@@ -1,10 +1,12 @@
 ﻿using Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Persistence.EFCore.Models.Identity;
 using System.Reflection;
 
 namespace Persistence.EFCore.Context
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext:IdentityDbContext<ApplicationUser,ApplicationRole,string>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options) 
         {
@@ -24,5 +26,9 @@ namespace Persistence.EFCore.Context
         public DbSet<Position> Positions { get; set; }
         public DbSet<PositionExam> PositionExams { get; set; }
         public DbSet<PositionSpecificDocument> PositionSpecificDocuments { get; set; }
+        public DbSet<Applicant> Applicants { get; set; }
+        public DbSet<ApplicantDocument> ApplicantDocuments { get; set; }
+        public DbSet<ApplicantExam> ApplicantExams { get; set; }
+        public DbSet<ApplicantStatu> ApplicantStatus { get; set; }
     }
 }

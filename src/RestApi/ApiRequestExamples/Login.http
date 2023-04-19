@@ -1,0 +1,15 @@
+POST  http://localhost:5167/auth/login
+Content-Type: application/json
+
+{
+  "email": "seyhmus121212@gmail.com",
+  "password": "S123456"
+}
+
+###
+
+POST http://localhost:5167/auth/refresh-token
+
+{
+  "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjE0YjA1NjEyLWYzY2YtNGExMC05ZDFmLTU4ZjYyZDg1OTM2ZiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJzZXlobXVzMTIxMjEyQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InNleWhtdXMxMjEyMTJAZ21haWwuY29tIiwiZXhwIjoxNjgxNjg3MTAzLCJpc3MiOiJodHRwczovL3Bicy5kaWNsZS5lZHUudHIiLCJhdWQiOiJodHRwczovL3Bicy5kaWNsZS5lZHUudHIifQ.XgDNLi-kayRjl7qbU2HbKk7QfqIXAob-D016sMbUdNo"
+}

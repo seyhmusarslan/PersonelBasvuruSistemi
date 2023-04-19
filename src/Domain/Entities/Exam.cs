@@ -4,7 +4,7 @@ using Domain.Common;
 namespace Domain.Entities
 {
     //KPSS, YDS , ALES 
-    public class Exam:BaseEntity
+    public class Exam:AuditEntity
     {
         public int ExamId { get; set; }
         public string Name { get; set; }

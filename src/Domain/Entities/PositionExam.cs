@@ -4,7 +4,7 @@ using Domain.Common;
 namespace Domain.Entities
 {
     //İlan detayındaki herbir pozisyon için gerekli olan sınavları ve minimum sonucunu ve çarpanını tutan sınıftır.
-    public class PositionExam:BaseEntity
+    public class PositionExam:AuditEntity
     {
         public int PositionExamId { get; set; }
         public int ExamId { get; set; }

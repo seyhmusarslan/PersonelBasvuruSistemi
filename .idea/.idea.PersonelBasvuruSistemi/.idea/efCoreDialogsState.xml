@@ -6,7 +6,7 @@
         <entry key="Common:7e22f341-3044-401d-bea5-de3d807c830b:dbContext" value="Persistence.EFCore.Context.AppDbContext" />
         <entry key="Common:buildConfiguration" value="Debug" />
         <entry key="Common:noBuild" value="false" />
-        <entry key="Common:outputFolder" value="EFCore\Migrations" />
+        <entry key="Common:outputFolder" value="EFCore/Migrations" />
         <entry key="Common:useDefaultConnection" value="true" />
       </map>
     </option>

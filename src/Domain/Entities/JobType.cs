@@ -4,7 +4,7 @@ using Domain.Common;
 namespace Domain.Entities
 {
     //sozlesmeli,ogretim elemani ve ogretim uyesi gibi farkli ilan turlerini  iceren sinif
-    public class JobType:BaseEntity
+    public class JobType:AuditEntity
     {
         public int JobTypeId { get; set; }
         public string Name { get; set; }

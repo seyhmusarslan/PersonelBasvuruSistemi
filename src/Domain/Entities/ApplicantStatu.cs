@@ -1,6 +1,6 @@
 using Domain.Common;
 
-namespace Domain.Enums;
+namespace Domain.Entities;
 
 public class ApplicantStatu:AuditEntity
 {
