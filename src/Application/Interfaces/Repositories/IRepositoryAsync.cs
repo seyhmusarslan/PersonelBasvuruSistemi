@@ -9,7 +9,7 @@ namespace Application.Interfaces.Repositories
         Task<T> GetAsync(Expression<Func<T, bool>> expression);
         Task<T> GetByIdAsync(int id);
         Task<IReadOnlyList<T>> ListAllAsync();
-        Task<IReadOnlyList<T>> ListAsync(Expression<Func<T,bool>> expression,Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+        Task<IReadOnlyList<T>> ListAsync(Expression<Func<T,bool>> expression,Func<IQueryable<T>, IOrderedQueryable<T>> orderBy,
             string includeProperties = "");
         Task<T> AddAsync(T entity);
         Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);

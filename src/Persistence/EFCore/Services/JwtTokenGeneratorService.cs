@@ -19,7 +19,7 @@ public class JwtTokenGeneratorService : IJwtTokenGeneratorService
 
     public ResponseMessageDto GenerateToken(string userId, string userName, string email, string PhoneNumber)
     {
-        //Ganerate a token
+        //Create user claims
 
         var claims = new List<Claim>
         {

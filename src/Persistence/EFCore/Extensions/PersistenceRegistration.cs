@@ -15,7 +15,7 @@ namespace Persistence.EFCore.Extensions
 {
     public static class PersistenceRegistration
     {
-        public static void AddPersistenceRegistration (this IServiceCollection services,IConfiguration configuration)
+        public static void AddPersistenceServices (this IServiceCollection services,IConfiguration configuration)
         {
             services.AddDbContext<AppDbContext>(options=>{
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
