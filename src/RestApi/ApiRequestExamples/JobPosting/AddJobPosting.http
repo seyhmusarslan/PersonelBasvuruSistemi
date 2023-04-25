@@ -1,0 +1,10 @@
+POST  http://localhost:5167/api/job-posting/create
+Content-Type: application/json
+
+{
+  "title": "2023 Mayıs Ayı Sözleşmeli Personel Alım İlanı",
+  "startDate": "2023-04-24T11:33:52.510Z",
+  "endDate": "2023-05-24T11:33:52.510Z",
+  "isActive": true,
+  "jobTypeId": 1
+}

@@ -10,9 +10,13 @@ namespace Application.Mappings
     {
         public GeneralMapping()
         {
+            //JobPosting
             CreateMap<JobPostingInputDto,JobPosting>().ReverseMap();
-            CreateMap<JobTypeInputDto,JobType>().ReverseMap();
+            CreateMap<JobPostingOutputDto,JobPosting>().ReverseMap();
+
+            //JobType
             CreateMap<JobTypeOutputDto,JobType>().ReverseMap();
+            CreateMap<JobTypeInputDto,JobType>().ReverseMap();
         }
     }
 }

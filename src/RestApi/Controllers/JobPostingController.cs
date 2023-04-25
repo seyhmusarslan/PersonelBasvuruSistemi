@@ -16,38 +16,68 @@ namespace RestApi.Controllers
         {
             _jobPostingService = jobPostingService;
         }
+
+
         [HttpPost("create")]
         public async Task<IActionResult> Post([FromBody] JobPostingInputDto input)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(
+                     new ResponseMessageDto
+                     {
+                         Message = "Invalid input",
+                         IsSuccess = false,
+                         Errors = ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage))
+                     }
+                );
             };
             var result = await _jobPostingService.CreateJobPostingAsync(input);
-            if(!result.IsSuccess)
+            if (!result.IsSuccess)
                 return BadRequest(result);
             return Ok(result);
-            
+
         }
+        
+        
         [HttpGet("get/{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            
-            if(id == 0)
-                return BadRequest();
+
+            if (id == 0)
+                return BadRequest(
+                     new ResponseMessageDto
+                     {
+                         Message = "Invalid input",
+                         IsSuccess = false,
+                         Errors = new List<string> { "Id is required" }
+                     }
+                );
             var result = await _jobPostingService.GetJobPostingByIdAsync(id);
-            if(!result.IsSuccess)
+            if (!result.IsSuccess)
                 return BadRequest(result);
             return Ok(result);
-            
+
         }
+        
+        
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _jobPostingService.DeleteJobPostingByIdAsync(id);
-            if(!result.IsSuccess)
+            if (!result.IsSuccess)
                 return BadRequest(result);
             return Ok();
+        }
+
+
+        [HttpGet("get-all")]
+        public async Task<IActionResult> Get()
+        {
+            var result = await _jobPostingService.GetJobPostingsAsync();
+            if (!result.IsSuccess)
+                return BadRequest(result);
+            return Ok(result);
         }
 
     }

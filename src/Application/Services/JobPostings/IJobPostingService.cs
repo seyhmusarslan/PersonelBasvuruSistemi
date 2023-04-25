@@ -8,6 +8,7 @@ namespace Application.Services.JobPostings
     {
         Task<ResponseMessageDto> CreateJobPostingAsync(JobPostingInputDto input);
         Task<ResponseMessageDto> GetJobPostingByIdAsync(int id);
+        Task<ResponseMessageDto> GetJobPostingsAsync();
         Task<ResponseMessageDto> DeleteJobPostingByIdAsync(int id);
         Task<ResponseMessageDto> UpdateJobPostingAsync(int id,JobPostingInputDto input);
     }

@@ -3,6 +3,7 @@ using System;
 using Application.Mappings;
 using Application.Services.JobPostings;
 using Microsoft.Extensions.DependencyInjection;
+using Application.Services.JobTypes;
 
 namespace Application.Extensions
 {
@@ -13,6 +14,7 @@ namespace Application.Extensions
             var assembly =Assembly.GetExecutingAssembly();
             services.AddAutoMapper(assembly);
             services.AddScoped<IJobPostingService, JobPostingService>();
+            services.AddScoped<IJobTypeService, JobTypeService>();
         }
     }
 }
