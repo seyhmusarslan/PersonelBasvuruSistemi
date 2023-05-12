@@ -11,9 +11,6 @@ public class Applicant:BaseEntity
     /// </summary>
     public int ApplicantId { get; set; }
     public int JobPostingId { get; set; }
-    public JobPosting JobPosting { get; set; }
-    public int JobPostingDetailId { get; set; }
-    public JobPostingDetail JobPostingDetail { get; set; }
     public int ApplicantStatuId { get; set; }
     public ApplicantStatu ApplicantStatus { get; set; }
     public string UserId { get; set; }

@@ -33,9 +33,6 @@ namespace Persistence.EFCore.Migrations
                     b.Property<int>("ApplicantStatuId")
                         .HasColumnType("int");
 
-                    b.Property<int>("JobPostingDetailId")
-                        .HasColumnType("int");
-
                     b.Property<int>("JobPostingId")
                         .HasColumnType("int");
 
@@ -46,10 +43,6 @@ namespace Persistence.EFCore.Migrations
                     b.HasKey("ApplicantId");
 
                     b.HasIndex("ApplicantStatuId");
-
-                    b.HasIndex("JobPostingDetailId");
-
-                    b.HasIndex("JobPostingId");
 
                     b.ToTable("Applicants");
                 });
@@ -247,7 +240,7 @@ namespace Persistence.EFCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("JobPostingId")
+                    b.Property<int>("JobPostingId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -665,29 +658,13 @@ namespace Persistence.EFCore.Migrations
 
             modelBuilder.Entity("Domain.Entities.Applicant", b =>
                 {
-                    b.HasOne("Domain.Entities.ApplicantStatu", "ApplicantStatu")
+                    b.HasOne("Domain.Entities.ApplicantStatu", "ApplicantStatus")
                         .WithMany()
                         .HasForeignKey("ApplicantStatuId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.JobPostingDetail", "JobPostingDetail")
-                        .WithMany()
-                        .HasForeignKey("JobPostingDetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.JobPosting", "JobPosting")
-                        .WithMany()
-                        .HasForeignKey("JobPostingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicantStatu");
-
-                    b.Navigation("JobPosting");
-
-                    b.Navigation("JobPostingDetail");
+                    b.Navigation("ApplicantStatus");
                 });
 
             modelBuilder.Entity("Domain.Entities.ApplicantDocument", b =>
@@ -725,13 +702,17 @@ namespace Persistence.EFCore.Migrations
 
             modelBuilder.Entity("Domain.Entities.JobPostingDetail", b =>
                 {
-                    b.HasOne("Domain.Entities.JobPosting", null)
+                    b.HasOne("Domain.Entities.JobPosting", "JobPosting")
                         .WithMany("JobPostingDetails")
-                        .HasForeignKey("JobPostingId");
+                        .HasForeignKey("JobPostingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Domain.Entities.Position", "Position")
                         .WithMany()
                         .HasForeignKey("PositionId");
+
+                    b.Navigation("JobPosting");
 
                     b.Navigation("Position");
                 });

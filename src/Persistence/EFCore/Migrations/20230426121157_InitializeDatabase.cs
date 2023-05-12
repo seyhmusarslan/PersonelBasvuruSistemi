@@ -138,6 +138,27 @@ namespace Persistence.EFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Applicants",
+                columns: table => new
+                {
+                    ApplicantId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    JobPostingId = table.Column<int>(type: "int", nullable: false),
+                    ApplicantStatuId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Applicants", x => x.ApplicantId);
+                    table.ForeignKey(
+                        name: "FK_Applicants_ApplicantStatus_ApplicantStatuId",
+                        column: x => x.ApplicantStatuId,
+                        principalTable: "ApplicantStatus",
+                        principalColumn: "ApplicantStatuId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -358,71 +379,6 @@ namespace Persistence.EFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "JobPostingDetails",
-                columns: table => new
-                {
-                    JobPostingDetailId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    WorkedDestination = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Count = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PositonId = table.Column<int>(type: "int", nullable: false),
-                    PositionId = table.Column<int>(type: "int", nullable: true),
-                    JobPostingId = table.Column<int>(type: "int", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedUserId = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_JobPostingDetails", x => x.JobPostingDetailId);
-                    table.ForeignKey(
-                        name: "FK_JobPostingDetails_JobPostings_JobPostingId",
-                        column: x => x.JobPostingId,
-                        principalTable: "JobPostings",
-                        principalColumn: "JobPostingId");
-                    table.ForeignKey(
-                        name: "FK_JobPostingDetails_Positions_PositionId",
-                        column: x => x.PositionId,
-                        principalTable: "Positions",
-                        principalColumn: "PositionId");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Applicants",
-                columns: table => new
-                {
-                    ApplicantId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    JobPostingId = table.Column<int>(type: "int", nullable: false),
-                    JobPostingDetailId = table.Column<int>(type: "int", nullable: false),
-                    ApplicantStatuId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Applicants", x => x.ApplicantId);
-                    table.ForeignKey(
-                        name: "FK_Applicants_ApplicantStatus_ApplicantStatuId",
-                        column: x => x.ApplicantStatuId,
-                        principalTable: "ApplicantStatus",
-                        principalColumn: "ApplicantStatuId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Applicants_JobPostingDetails_JobPostingDetailId",
-                        column: x => x.JobPostingDetailId,
-                        principalTable: "JobPostingDetails",
-                        principalColumn: "JobPostingDetailId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Applicants_JobPostings_JobPostingId",
-                        column: x => x.JobPostingId,
-                        principalTable: "JobPostings",
-                        principalColumn: "JobPostingId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ApplicantDocuments",
                 columns: table => new
                 {
@@ -466,6 +422,38 @@ namespace Persistence.EFCore.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "JobPostingDetails",
+                columns: table => new
+                {
+                    JobPostingDetailId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WorkedDestination = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Count = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    JobPostingId = table.Column<int>(type: "int", nullable: false),
+                    PositonId = table.Column<int>(type: "int", nullable: false),
+                    PositionId = table.Column<int>(type: "int", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedUserId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JobPostingDetails", x => x.JobPostingDetailId);
+                    table.ForeignKey(
+                        name: "FK_JobPostingDetails_JobPostings_JobPostingId",
+                        column: x => x.JobPostingId,
+                        principalTable: "JobPostings",
+                        principalColumn: "JobPostingId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_JobPostingDetails_Positions_PositionId",
+                        column: x => x.PositionId,
+                        principalTable: "Positions",
+                        principalColumn: "PositionId");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_ApplicantDocuments_ApplicantId",
                 table: "ApplicantDocuments",
@@ -480,16 +468,6 @@ namespace Persistence.EFCore.Migrations
                 name: "IX_Applicants_ApplicantStatuId",
                 table: "Applicants",
                 column: "ApplicantStatuId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Applicants_JobPostingDetailId",
-                table: "Applicants",
-                column: "JobPostingDetailId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Applicants_JobPostingId",
-                table: "Applicants",
-                column: "JobPostingId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -596,6 +574,9 @@ namespace Persistence.EFCore.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "JobPostingDetails");
+
+            migrationBuilder.DropTable(
                 name: "JobTypeDocuments");
 
             migrationBuilder.DropTable(
@@ -614,22 +595,19 @@ namespace Persistence.EFCore.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "JobPostings");
+
+            migrationBuilder.DropTable(
                 name: "DocumentGroups");
 
             migrationBuilder.DropTable(
                 name: "Exams");
 
             migrationBuilder.DropTable(
-                name: "ApplicantStatus");
-
-            migrationBuilder.DropTable(
-                name: "JobPostingDetails");
-
-            migrationBuilder.DropTable(
-                name: "JobPostings");
-
-            migrationBuilder.DropTable(
                 name: "Positions");
+
+            migrationBuilder.DropTable(
+                name: "ApplicantStatus");
 
             migrationBuilder.DropTable(
                 name: "JobTypes");

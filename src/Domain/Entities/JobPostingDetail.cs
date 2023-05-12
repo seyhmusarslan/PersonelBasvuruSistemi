@@ -9,6 +9,8 @@ namespace Domain.Entities
         public string WorkedDestination { get; set; }
         public int Count { get; set; }
         public string Description { get; set; }
+        public int JobPostingId { get; set; }
+        public JobPosting JobPosting { get; set; }
         public int PositonId { get; set; }
         public Position Position { get; set; }
     }

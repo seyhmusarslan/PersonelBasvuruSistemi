@@ -116,10 +116,11 @@ namespace Application.Services.JobPostings
                     IsSuccess = false,
                     Errors = new List<string> {"Job Posting not found"}
                 };
-            await _jobPostingRepository.UpdateAsync(jobPosting);
+            var updatedJobPosting = _mapper.Map<JobPosting>(input);
+            await _jobPostingRepository.UpdateAsync(updatedJobPosting);
             return new ResponseMessageDto
             {
-                Data = _mapper.Map<JobPostingOutputDto>(jobPosting),
+                Data = _mapper.Map<JobPostingOutputDto>(updatedJobPosting),
                 Message = "İlan güncellendi",
                 IsSuccess = true
             };
