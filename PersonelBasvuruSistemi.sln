@@ -5,19 +5,17 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{749628F8-0F66-4552-AF7C-C80BD8B086DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{864F29B6-3707-4E4A-A78C-EDEC03E5C74F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{864F29B6-3707-4E4A-A78C-EDEC03E5C74F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{51681597-C75B-4916-B897-B9A0DD7E7925}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{51681597-C75B-4916-B897-B9A0DD7E7925}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "src\Persistence\Persistence.csproj", "{7E22F341-3044-401D-BEA5-DE3D807C830B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "src\Persistence\Persistence.csproj", "{7E22F341-3044-401D-BEA5-DE3D807C830B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{83A7D575-B8E0-4303-B96A-C4A83C76DD26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{83A7D575-B8E0-4303-B96A-C4A83C76DD26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApi", "src\RestApi\RestApi.csproj", "{24D812B4-EC74-410B-8ABF-95FC86036D9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApi", "src\RestApi\RestApi.csproj", "{24D812B4-EC74-410B-8ABF-95FC86036D9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApi.Contracts", "src\RestApi.Contracts\RestApi.Contracts.csproj", "{9331E54E-4B95-41B3-ACB1-2AA0FDB65B25}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Dto", "src\Application.Dto\Application.Dto.csproj", "{1C0B1158-D33D-4B02-A687-EE6E9477D987}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Dto", "src\Application.Dto\Application.Dto.csproj", "{1C0B1158-D33D-4B02-A687-EE6E9477D987}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +43,6 @@ Global
 		{24D812B4-EC74-410B-8ABF-95FC86036D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24D812B4-EC74-410B-8ABF-95FC86036D9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24D812B4-EC74-410B-8ABF-95FC86036D9F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9331E54E-4B95-41B3-ACB1-2AA0FDB65B25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9331E54E-4B95-41B3-ACB1-2AA0FDB65B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9331E54E-4B95-41B3-ACB1-2AA0FDB65B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9331E54E-4B95-41B3-ACB1-2AA0FDB65B25}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1C0B1158-D33D-4B02-A687-EE6E9477D987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1C0B1158-D33D-4B02-A687-EE6E9477D987}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C0B1158-D33D-4B02-A687-EE6E9477D987}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,7 +57,6 @@ Global
 		{7E22F341-3044-401D-BEA5-DE3D807C830B} = {749628F8-0F66-4552-AF7C-C80BD8B086DF}
 		{83A7D575-B8E0-4303-B96A-C4A83C76DD26} = {749628F8-0F66-4552-AF7C-C80BD8B086DF}
 		{24D812B4-EC74-410B-8ABF-95FC86036D9F} = {749628F8-0F66-4552-AF7C-C80BD8B086DF}
-		{9331E54E-4B95-41B3-ACB1-2AA0FDB65B25} = {749628F8-0F66-4552-AF7C-C80BD8B086DF}
 		{1C0B1158-D33D-4B02-A687-EE6E9477D987} = {749628F8-0F66-4552-AF7C-C80BD8B086DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
